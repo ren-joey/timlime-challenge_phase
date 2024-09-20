@@ -1,19 +1,22 @@
-import { Segment } from "./Segment";
+import { Segment } from './Segment';
 export const KeyframeList = () => {
-  // TODO: implement scroll sync with `Ruler` and `TrackList`
+    // TODO: implement scroll sync with `Ruler` and `TrackList`
 
-  return (
-    <div className="px-4 min-w-0 overflow-auto" data-testid="keyframe-list">
-      <Segment />
-      <Segment />
-      <Segment />
-      <Segment />
-      <Segment />
-      <Segment />
-      <Segment />
-      <Segment />
-      <Segment />
-      <Segment />
-    </div>
-  );
+    return (
+        <div
+            className="px-4 min-w-0 overflow-auto"
+            data-testid="keyframe-list"
+        >
+            <Segment />
+            <Segment />
+            <Segment />
+            <Segment />
+            <Segment />
+            <Segment />
+            <Segment />
+            <Segment />
+            <Segment />
+            <Segment />
+        </div>
+    );
 };
