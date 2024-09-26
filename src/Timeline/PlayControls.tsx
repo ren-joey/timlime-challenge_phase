@@ -1,23 +1,32 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
+import { PlayheadStoreState, usePlayheadStore } from './Stores/usePlayheadStore';
 
-type PlayControlsProps = {
-  time: number;
-  setTime: (time: number) => void;
-};
-
-export const PlayControls = ({ time, setTime }: PlayControlsProps) => {
+export const PlayControls = () => {
     // TODO: implement time <= maxTime
+    // const time = usePlayheadStore(state => state.time);
+    const setTime = usePlayheadStore(state => state.setTime);
+    // const max = usePlayheadStore(state => state.max);
+    const setMax = usePlayheadStore(state => state.setMax);
+    const [tempTime, setTempTime] = useState(0);
+    const [tempMax, setTempMax] = useState(2000);
 
     const onTimeChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
-            setTime(Number(e.target.value));
+            setTempTime(Number(e.target.value));
         },
-        [setTime]
+        [tempTime, setTempTime]
+    );
+
+    const onMaxChange = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            setTempMax(Number(e.target.value));
+        },
+        [tempMax, setTempMax]
     );
 
     return (
         <div
-            className="flex items-center justify-between border-b border-r border-solid border-gray-700 
+            className="flex items-center justify-between border-b border-r border-solid border-gray-700
  px-2"
             data-testid="play-controls"
         >
@@ -30,7 +39,7 @@ export const PlayControls = ({ time, setTime }: PlayControlsProps) => {
                     min={0}
                     max={2000}
                     step={10}
-                    value={time}
+                    value={tempTime}
                     onChange={onTimeChange}
                 />
             </fieldset>
@@ -44,6 +53,8 @@ export const PlayControls = ({ time, setTime }: PlayControlsProps) => {
                     max={2000}
                     step={10}
                     defaultValue={2000}
+                    value={tempMax}
+                    onChange={onMaxChange}
                 />
                 Duration
             </fieldset>

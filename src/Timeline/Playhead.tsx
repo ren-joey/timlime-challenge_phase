@@ -1,8 +1,11 @@
-type PlayheadProps = {
-  time: number;
-};
+import { useState } from 'react';
+import { PlayheadStoreState, usePlayheadStore } from './Stores/usePlayheadStore';
 
-export const Playhead = ({ time }: PlayheadProps) => {
+export const Playhead = () => {
+    const [isDragging, setIsDragging] = useState(false);
+    const time = usePlayheadStore((state: PlayheadStoreState) => state.time);
+
+
     return (
         <div
             className="absolute left-[316px] h-full border-l-2 border-solid border-yellow-600 z-10"

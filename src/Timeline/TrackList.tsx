@@ -1,12 +1,15 @@
-export const TrackList = () => {
+import { forwardRef } from 'react';
+
+export const TrackList = forwardRef<HTMLDivElement>((_, ref) => {
     // TODO: implement scroll sync with `KeyframeList`
 
     return (
         <div
             className="grid grid-flow-row auto-rows-[40px]
-      border-r border-solid border-r-gray-700 
+      border-r border-solid border-r-gray-700
       overflow-auto"
             data-testid="track-list"
+            ref={ref}
         >
             <div className="p-2">
                 <div>Track A</div>
@@ -40,4 +43,6 @@ export const TrackList = () => {
             </div>
         </div>
     );
-};
+});
+
+TrackList.displayName = 'TrackList';
